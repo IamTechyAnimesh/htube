@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTube - Hacker's Video Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-terminal"></i>
+                <span class="logo-text">HTube</span>
+                <span class="blink">_</span>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> ~/home
+                </a>
+                <a href="#" class="nav-link" data-section="trending">
+                    <i class="fas fa-fire"></i> ./trending
+                </a>
+                <a href="#" class="nav-link" data-section="upload">
+                    <i class="fas fa-upload"></i> ./upload
+                </a>
+                <a href="#" class="nav-link" data-section="profile">
+                    <i class="fas fa-user"></i> ./profile
+                </a>
+            </nav>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="$ grep -r 'video' ./database" id="searchInput">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Section -->
+            <section id="home" class="section active">
+                <div class="terminal-header">
+                    <span class="prompt">user@htube:~$ ls -la ./videos/</span>
+                </div>
+                <div class="video-grid" id="videoGrid">
+                    <!-- Videos will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Trending Section -->
+            <section id="trending" class="section">
+                <div class="terminal-header">
+                    <span class="prompt">user@htube:~$ sort -k2 -nr ./trending/</span>
+                </div>
+                <div class="video-grid" id="trendingGrid">
+                    <!-- Trending videos will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section id="upload" class="section">
+                <div class="terminal-header">
+                    <span class="prompt">user@htube:~$ ./upload-video.sh</span>
+                </div>
+                <div class="upload-container">
+                    <div class="upload-form">
+                        <div class="form-group">
+                            <label for="videoTitle">Video Title:</label>
+                            <input type="text" id="videoTitle" placeholder="Enter video title...">
+                        </div>
+                        <div class="form-group">
+                            <label for="videoDescription">Description:</label>
+                            <textarea id="videoDescription" placeholder="Enter video description..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="videoDriveId">Google Drive File ID:</label>
+                            <input type="text" id="videoDriveId" placeholder="Enter Google Drive file ID...">
+                            <small>Extract the file ID from your Google Drive share URL</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="videoThumbnail">Thumbnail URL (optional):</label>
+                            <input type="url" id="videoThumbnail" placeholder="Enter thumbnail URL...">
+                        </div>
+                        <div class="form-group">
+                            <label for="videoTags">Tags:</label>
+                            <input type="text" id="videoTags" placeholder="hacker, programming, tutorial">
+                        </div>
+                        <button type="button" class="upload-btn" id="uploadBtn">
+                            <i class="fas fa-upload"></i> Execute Upload
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="section">
+                <div class="terminal-header">
+                    <span class="prompt">user@htube:~$ whoami</span>
+                </div>
+                <div class="profile-container">
+                    <div class="profile-info">
+                        <h2>User Profile</h2>
+                        <p>Status: <span class="status-online">Online</span></p>
+                        <p>Videos Uploaded: <span id="videoCount">0</span></p>
+                        <p>Total Views: <span id="totalViews">0</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Video Player Modal -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="prompt">user@htube:~$ ./play-video.sh</span>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="video-player-container">
+                    <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h2 id="modalVideoTitle"></h2>
+                    <p id="modalVideoDescription"></p>
+                    <div class="video-meta">
+                        <span id="modalVideoViews"></span>
+                        <span id="modalVideoDate"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal Footer -->
+        <footer class="footer">
+            <div class="terminal-line">
+                <span class="prompt">user@htube:~$ echo "Welcome to HTube - The Hacker's Video Platform"</span>
+            </div>
+            <div class="terminal-line">
+                <span class="output">HTube v1.0.0 - Powered by GitHub & Google Drive</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
